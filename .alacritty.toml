@@ -1,0 +1,45 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/tokio_night.toml"
+]
+
+[window]
+dimensions = {columns = 100, lines = 30}
+padding = {x = 5, y = 5}
+decorations = "None"
+opacity = 0.9
+title = ""
+dynamic_title = false
+class = { instance = "Alacritty", general = "Alacritty" }
+decorations_theme_variant = "Dark"
+level = "Normal"
+
+[scrolling]
+history = 10000
+multiplier = 1
+
+[font]
+normal = {family = "Hack Nerd Font", style = "Regular"}
+size = 12
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+
+[terminal]
+shell = { program = "/bin/zsh" }
+
+[mouse]
+hide_when_typing = false
+bindings = [
+  { mouse = "Right", mods = "Control", action = "Paste" },
+]
+
+[hints]
+enabled = [
+  { hyperlinks = true, post_processing = true, persist = true, action = "Copy" }
+]
+
+[keyboard]
+bindings = [
+  { key = "C", mods = "Control|Shift", action = "Copy" }
+]

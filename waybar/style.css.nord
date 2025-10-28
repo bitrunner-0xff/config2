@@ -1,0 +1,289 @@
+@keyframes blink-warning {
+    70% {
+        color: @light;
+    }
+
+    to {
+        color: @light;
+        background-color: @warning;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @light;
+    }
+
+    to {
+        color: @light;
+        background-color: @critical;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Styles
+ * -------------------------------------------------------------------------- */
+
+/* COLORS */
+
+/* Nord */
+@define-color bg #2E3440;
+/*@define-color bg #353C4A;*/
+@define-color light #D8DEE9;
+/*@define-color dark @nord_dark_font;*/
+@define-color warning #ebcb8b;
+@define-color critical #BF616A;
+@define-color mode #434C5E;
+/*@define-color workspaces @bg;*/
+/*@define-color workspaces @nord_dark_font;*/
+/*@define-color workspacesfocused #434C5E;*/
+@define-color workspacesfocused #4C566A;
+@define-color tray @workspacesfocused;
+@define-color sound #EBCB8B;
+@define-color network #5D7096;
+@define-color memory #546484;
+@define-color cpu #596A8D;
+@define-color temp #4D5C78;
+@define-color layout #5e81ac;
+@define-color battery #88c0d0;
+@define-color date #434C5E;
+@define-color time #434C5E;
+@define-color backlight #434C5E;
+@define-color nord_bg #434C5E;
+@define-color nord_bg_blue #546484;
+@define-color nord_light #D8DEE9;
+@define-color nord_light_font #D8DEE9;
+@define-color nord_dark_font #434C5E;
+
+
+
+* {
+    border: none;
+    min-height: 0;
+    margin: 0.2em 0.3em 0.2em 0.3em;
+}
+
+window {
+    margin-right: 40px;
+    margin-left: 40px;
+    font-weight: normal;
+}
+
+window#wwaybar {
+    background: @bg;
+    color: @light;
+    font-family: "Cantarell", "Font Awesome 5 Pro";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+#clock,
+#battery,
+#backlight,
+#network,
+#wireplumber,
+#bluetooth,
+#language,
+#keyboard-state,
+#window,
+#idle_inhibitor,
+#cpu,
+#temperature {
+	padding-left: 0.3em;
+	padding-right: 0.6em;
+}
+
+/* Each module that should blink */
+#temperature,
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical module */
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
+    color: @critical;
+}
+
+/* Each critical that should blink */
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Each warning */
+#network.disconnected,
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
+    background: @warning;
+    color: @nord_dark_font;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+/* ------------------------------------------- */
+
+/* Modules */
+
+
+/* WORKSPACES */
+
+#workspaces button {
+    font-weight: bold; /* Somewhy the bar-wide setting is ignored*/
+    padding: 0;
+    background: none;
+    font-size: 1em;
+}
+
+#workspaces button:hover {
+    background-color: #3b4252;
+}
+
+#workspaces button.focused {
+	 background: @workspacesfocused;
+    color: #D8DEE9;
+    opacity: 1;
+    padding: 0 0.4em;
+}
+
+#workspaces button.urgent {
+	border-color: #c9545d;
+	color: #c9545d;
+	opacity: 1;
+}
+
+
+
+/* BLUETOOTH */
+
+#bluetooth {
+    background: @nord_bg_blue;
+    padding: 0 0.6em;
+}
+
+#idle_inhibitor {
+    background: @mode;
+    padding: 0 0.6em;
+}
+
+
+/* NETWORK */
+
+#network {
+    background: @nord_bg_blue;
+}
+
+
+/* CPU */
+
+#cpu {
+    background: @nord_bg;
+    color: #D8DEE9;
+}
+#cpu.critical {
+    color: @nord_dark_font;
+}
+
+
+/* LANG */
+
+#language {
+    background: @nord_bg_blue;
+    color: #D8DEE9;
+    padding: 0 0.4em;
+}
+
+
+/* TEMPERATURE */
+
+#temperature {
+    background-color: @nord_bg;
+    color: #D8DEE9;
+}
+#temperature.critical {
+    background:  @critical;
+}
+
+
+/* BATTERY */
+
+#battery {
+    background: @battery;
+}
+
+
+/* LIGHT */
+
+#backlight {
+    background: @nord_bg_blue;
+}
+
+
+/* CLOCK */
+
+#clock {
+    background: @nord_bg_blue;
+    color: #D8DEE9;
+}
+#clock.date {
+    background: @date;
+}
+
+#clock.time {
+    background: @mode;
+}
+
+
+/* BUTTONS */
+
+tooltip {
+  background: #2e3440;
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+
+tooltip label {
+  color: #d8dee9;
+}
+
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background-color: #2e3440;
+    box-shadow: inset 0 -2px #d8dee9;
+}
+
+/* MULTIMEDIA */ 
+
+#wireplumber {
+	background: @nord_bg_blue;
+	color: #D8DEE9;
+}
+
+#wireplumber.muted {
+	background: #BF616A;
+    color: #BF616A;
+}
+
+
+/* DONNO */
+
+#custom-layout {
+    background: @layout;
+}
